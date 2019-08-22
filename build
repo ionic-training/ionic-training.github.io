@@ -23,13 +23,21 @@ do
 		fi
 	fi
 
-	((_IDX=$_IDX + 1))
+	[[ "$_LANG" = ""	]] && _LANG=default
+
+	_CATEGORY="${_TYPE,,}"
+
+	[[ "$_CATEGORY" =~ "learning"	]] && _CATEGORY=learn
+	[[ "$_CATEGORY" =~ "koans"		]] && _CATEGORY=test
+	[[ "$_CATEGORY" =~ "course"		]] && _CATEGORY=practice
 
 	echo "- title: \"$_TITLE\""
 	echo "  subtitle: \"$_SUBTITLE\""
 	echo "  link: https://github.com/ionic-training/$_REPO"
 	echo "  lang: $_LANG"
 	echo "  img: ${_LANG,,}.png"
-	echo " "
+	echo "  category: ${_CATEGORY,,}"
+	echo ""
+	echo "#"
 
-done
+done | tee _data/repositories.yml | grep 'link:'
