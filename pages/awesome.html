@@ -16,7 +16,7 @@ title: Awesome Links and Apps
     {% include component/breadcrumb.html %}
 
     <div class="row">
-        {% assign items = site.data.repositories | where: "category", "awesome" | sort: "title" %}
+        {% assign items = site.data.awesome | where: "category", "awesome" | sort: "title" %}
         {% for item in items %}
         <div class="{{ colclass }} portfolio-item">
             <div class="card h-100">
